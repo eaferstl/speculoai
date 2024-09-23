@@ -1,0 +1,112 @@
+# LiveTransfers Webhook Cloud Function
+
+This Cloud Function creates a new document in the "LiveTransfers" collection in Firestore when triggered via a webhook.
+
+## Function URL
+https://us-central1-heyisaai.cloudfunctions.net/create_live_transfer
+
+## Project Details
+- Project ID: heyisaai
+- Region: us-central1
+- Authentication: Unauthenticated (public access)
+
+## Usage
+
+### Endpoint
+POST https://us-central1-heyisaai.cloudfunctions.net/create_live_transfer
+
+### Headers
+- Content-Type: application/json
+
+### Request Body
+```json
+{
+  "from": string,
+  "transfer_number": {
+    "name": string
+  },
+  "to": string,
+  "reason_say": string (optional),
+  "from_name": string (optional),
+  "organization_id": string (optional)
+}
+```
+
+### Required Fields
+- `from`: The phone number of the caller
+- `transfer_number`: An object with at least one key-value pair of name and phone number
+- `to`: The phone number that was initially called
+
+### Optional Fields
+- `reason_say`: The reason for the transfer
+- `from_name`: The name of the caller
+- `organization_id`: Identifier for the associated organization
+
+### Automatically Added Fields
+- `created_at`: Timestamp when the document was created
+- `processed`: Boolean field, initially set to false
+- `answered`: Boolean field, initially set to false
+
+### Example Request
+
+```bash
+curl -X POST \
+  https://us-central1-heyisaai.cloudfunctions.net/create_live_transfer \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "from": "+11234567890",
+    "transfer_number": {
+      "Bobby Moats": "+15129640832"
+    },
+    "to": "+10987654321",
+    "reason_say": "Potential client inquiry",
+    "from_name": "John Doe",
+    "organization_id": "org123"
+  }'
+```
+
+### Response
+
+#### Success (201 Created)
+```json
+{
+  "message": "Document created successfully",
+  "document_id": "<generated-document-id>"
+}
+```
+
+#### Error (400 Bad Request)
+```json
+{
+  "error": "Missing required field: <field_name>"
+}
+```
+
+#### Error (405 Method Not Allowed)
+```json
+{
+  "error": "Only POST requests are accepted"
+}
+```
+
+#### Error (500 Internal Server Error)
+```json
+{
+  "error": "<error_message>"
+}
+```
+
+## Notes
+- The function automatically adds `created_at`, `processed`, and `answered` fields to each document.
+- `processed` and `answered` are initially set to `false`.
+- Ensure all phone numbers are in E.164 format (e.g., +11234567890).
+- This function is publicly accessible. Implement additional security measures if needed.
+
+## Troubleshooting
+If you encounter issues:
+1. Check that all required fields are present in your request.
+2. Verify that the Content-Type header is set to application/json.
+3. Ensure that your request payload is valid JSON.
+4. Check the Cloud Functions logs in the Google Cloud Console for detailed error messages.
+
+For persistent issues, review the Cloud Functions logs or contact the development team.

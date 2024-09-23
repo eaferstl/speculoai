@@ -1,0 +1,6 @@
+openai
+google-cloud-firestore
+google-cloud-secret-manager
+firebase_admin
+flask
+functions-framework

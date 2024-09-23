@@ -1,0 +1,19 @@
+# Firebase Admin SDK
+firebase-admin==5.3.0
+
+# Google Cloud libraries
+google-cloud-tasks==2.7.1
+google-cloud-firestore==2.6.1
+
+# Other Google libraries
+google-auth==2.6.2
+google-api-core==2.8.0
+
+# Date and time handling
+pytz==2022.1
+
+# HTTP requests (if needed)
+requests==2.27.1
+
+# Protobuf for Google Cloud Tasks
+protobuf==3.20.1

@@ -1,0 +1,23 @@
+# Google Cloud libraries
+google-cloud-firestore
+google-cloud-secret-manager
+google-cloud-storage
+google-cloud-error-reporting
+
+# HTTP function framework
+functions-framework
+
+# Flask (usually included with functions-framework, but listed for clarity)
+flask
+
+# BeautifulSoup for HTML processing
+beautifulsoup4
+
+# Requests for making HTTP requests
+requests
+
+# PyTZ for timezone handling
+pytz
+
+# Any additional libraries used in your code but not visible in the provided snippets
+# For example, if you're using pandas, numpy, or other data processing libraries
