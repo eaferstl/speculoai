@@ -1,0 +1,7 @@
+google-cloud-firestore
+firebase-admin
+google-auth
+flask
+google-api-python-client
+flask
+functions-framework
